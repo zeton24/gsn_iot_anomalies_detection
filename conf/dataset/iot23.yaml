@@ -1,0 +1,8 @@
+# @package _group_
+
+_target_: __main__.IoTDataModule
+
+file_id: '1F0QeCyCDnnR9bIpUOb-YoCJxbUZIslxM'
+file_name: 'iot-23.csv'
+batch_size: 64
+binary_classification: True
