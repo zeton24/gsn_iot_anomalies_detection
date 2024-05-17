@@ -1,0 +1,8 @@
+# @package _group_
+
+_target_: __main__.IoTDataModule
+
+file_id: '1k8RqOM7hBvL8uomcKnnLr5HasYRWnYeW'
+file_name: 'iot-intrusion.csv'
+batch_size: 64
+binary_classification: True
