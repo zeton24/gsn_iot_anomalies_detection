@@ -1,0 +1,3 @@
+defaults:
+  - dataset: bot
+  - classifier: anomalyClassifier

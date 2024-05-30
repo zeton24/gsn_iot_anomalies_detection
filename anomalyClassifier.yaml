@@ -1,0 +1,6 @@
+_target_: lightning.AnomalyClassifier
+
+lr: 0.001
+model:
+  _target_: models.Model1D
+  binary_classification: True
