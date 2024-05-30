@@ -4,6 +4,7 @@ import polars
 import torch
 import pytorch_lightning as pl
 from torchmetrics.functional import accuracy, precision, recall, f1_score
+from torchmetrics.classification import BinaryConfusionMatrix
 from torch.utils.data import Dataset, DataLoader, random_split
 F = torch.nn.functional
 
@@ -88,6 +89,7 @@ class AnomalyClassifier(pl.LightningModule):
         self.current_epoch_training_loss = torch.tensor(0.0)
         self.training_step_outputs = []
         self.validation_step_outputs = []
+        self.bcm = BinaryConfusionMatrix()
 
     def forward(self, x):
         return self.model(x)
@@ -110,6 +112,7 @@ class AnomalyClassifier(pl.LightningModule):
             prec = precision(preds, z, task="binary")
             rec = recall(preds, z, task="binary")
             f1 = f1_score(preds, z, task="binary")
+            self.bcm.update(preds, z)
         else:
             acc = accuracy(preds, z, num_classes=self.num_classes, task="multiclass")
             prec = precision(preds, z, num_classes=self.num_classes, task="multiclass", average="macro")
@@ -158,6 +161,10 @@ class AnomalyClassifier(pl.LightningModule):
         self.log_dict({'precision': prec, 'recall': rec, 'f1_score':  f1}, on_step=False, on_epoch=True, prog_bar=True, logger=True)
         return {'test_loss': loss, 'test_acc': acc, 'precision': prec, 'recall': rec, 'f1_score':  f1}
 
+    def on_test_epoch_end(self):
+        bcm_result = self.bcm.compute()
+        self.bcm.plot()
+    
     def configure_optimizers(self):
         optimizer = torch.optim.Adam(self.parameters(), lr=self.lr)
         lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=3, gamma=0.1)
