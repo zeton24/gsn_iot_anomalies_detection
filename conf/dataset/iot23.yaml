@@ -1,6 +1,4 @@
-# @package _group_
-
-_target_: __main__.IoTDataModule
+_target_: lightning.IoTDataModule
 
 file_id: '1F0QeCyCDnnR9bIpUOb-YoCJxbUZIslxM'
 file_name: 'iot-23.csv'

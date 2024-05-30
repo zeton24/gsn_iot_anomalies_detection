@@ -1,6 +1,5 @@
-# @package _group_
 
-_target_: __main__.IoTDataModule
+_target_: lightning.IoTDataModule
 
 file_id: '1zCd1BLTtF2JVqz-h-ydUTmpQJIjkBsNg'
 file_name: 'mqtt.csv'

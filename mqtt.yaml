@@ -1,7 +1,0 @@
-
-_target_: lightning.IoTDataModule
-
-file_id: '1zCd1BLTtF2JVqz-h-ydUTmpQJIjkBsNg'
-file_name: 'mqtt.csv'
-batch_size: 64
-binary_classification: True

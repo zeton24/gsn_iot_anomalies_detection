@@ -1,6 +1,4 @@
-# @package _group_
-
-_target_: __main__.IoTDataModule
+_target_: lightning.IoTDataModule
 
 file_id: '1k8RqOM7hBvL8uomcKnnLr5HasYRWnYeW'
 file_name: 'iot-intrusion.csv'

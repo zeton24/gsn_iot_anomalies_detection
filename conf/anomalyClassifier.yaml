@@ -1,5 +1,0 @@
-_target_: __main__.AnomalyClassifier
-
-lr: 0.001
-model_type: 1
-binary_classification: True
